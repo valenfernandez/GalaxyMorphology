@@ -1,5 +1,3 @@
-# src/utils/visualization.py
-
 import matplotlib.pyplot as plt
 import random
 from src.config import GALAXY10_CLASSES

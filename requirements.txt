@@ -6,3 +6,4 @@ Matplotlib
 Seaborn
 h5py
 opencv-python
+scikit-learn

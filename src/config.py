@@ -7,8 +7,8 @@ DATA_PATH = PROJECT_ROOT / "data" / "Galaxy10_DECals.h5"
 
 IMAGE_SIZE = (128, 128)
 NUM_CLASSES = 10
-RANDOM_SEED = 42 #cambiar
-TEST_SIZE = 0.2 #ver
+RANDOM_SEED = 42 # fixed integer seed
+TEST_SIZE = 0.2 #20%
 
 GALAXY10_CLASSES = {
     0: "Disturbed Galaxies",
