@@ -1,0 +1,12 @@
+# CNN https://scikit-learn.org/stable/supervised_learning.html
+#three layers to start
+# 3x3 kernel
+# input size 128 × 128 × 3
+# Number of filters (channels) model capacity for three layers 32–64–128 (Deeper layers: more complex)
+# Activation function: (hidden layers) ReLU(x) = max(0, x) its the default except for NLP w transformers (GELU)
+# output layer : Classification (Softmax (multiclass) / Sigmoid)  Regression(Linear) GenerationLLMs(Softmax)
+#  max pooling: Keeps strongest activation (summarizes the presence of a feature) 
+# flatten : Converts feature maps into a vector
+# loss function: Cross-entropy loss for multiclass classification (Applies softmax to logits Computes log-loss vs true label)
+# optimizer: update the models weights. Adaptive Moment Estimation Momentum (direction memory) Adaptive learning rates (per parameter) Takes larger steps when confident Takes smaller steps when gradients are noisy
+# Output size = 10
