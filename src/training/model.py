@@ -45,8 +45,8 @@ def build_cnn_model():
 
 
     # Classification Head
-    model.add(layers.Flatten())
-    model.add(layers.Dense(128, activation="relu"))
+    model.add(layers.GlobalAveragePooling2D())
+    # model.add(layers.Dense(128, activation="relu"))
     model.add(layers.Dense(NUM_CLASSES, activation="softmax"))
 
     return model
