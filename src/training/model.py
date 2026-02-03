@@ -17,10 +17,12 @@ def build_cnn_model():
         layers.Conv2D(
             filters=32,
             kernel_size=(3, 3),
-            activation="relu",
+            activation=None, #raw conv outputs for batch normalization
             input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3)
         )
     )
+    model.add(layers.BatchNormalization())
+    model.add(layers.Activation("relu"))
     model.add(layers.MaxPooling2D(pool_size=(2, 2)))
 
     # Conv Block 2
@@ -28,9 +30,11 @@ def build_cnn_model():
         layers.Conv2D(
             filters=64,
             kernel_size=(3, 3),
-            activation="relu"
+            activation=None
         )
     )
+    model.add(layers.BatchNormalization())
+    model.add(layers.Activation("relu"))
     model.add(layers.MaxPooling2D(pool_size=(2, 2)))
 
     # Conv Block 3
@@ -38,9 +42,11 @@ def build_cnn_model():
         layers.Conv2D(
             filters=128,
             kernel_size=(3, 3),
-            activation="relu"
+            activation=None
         )
     )
+    model.add(layers.BatchNormalization())
+    model.add(layers.Activation("relu"))
     model.add(layers.MaxPooling2D(pool_size=(2, 2)))
 
 
