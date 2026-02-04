@@ -3,7 +3,8 @@
 import tensorflow as tf
 from tensorflow.keras import layers, models
 from src.config import IMAGE_SIZE, NUM_CLASSES
-
+from tensorflow.keras.applications import EfficientNetB0
+from tensorflow.keras.applications.efficientnet import preprocess_input
 
 def build_cnn_model():
     """
@@ -54,5 +55,33 @@ def build_cnn_model():
     model.add(layers.GlobalAveragePooling2D())
     # model.add(layers.Dense(128, activation="relu"))
     model.add(layers.Dense(NUM_CLASSES, activation="softmax"))
+
+    return model
+
+
+def build_cnn_model_v2():
+    """
+    Transfer learning model using EfficientNetB0 as feature extractor.
+    """
+
+    base_model = EfficientNetB0(
+        weights="imagenet",
+        include_top=False,
+        input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3)
+    )
+
+    # Freeze pretrained backbone
+    base_model.trainable = False
+
+    model = models.Sequential([
+        layers.Input(shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3)),
+
+        layers.Lambda(preprocess_input),
+        base_model,
+        layers.GlobalAveragePooling2D(),
+        layers.BatchNormalization(),
+        layers.Dense(128, activation="relu"),
+        layers.Dense(NUM_CLASSES, activation="softmax")
+    ])
 
     return model

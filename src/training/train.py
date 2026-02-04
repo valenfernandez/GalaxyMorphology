@@ -2,29 +2,35 @@
 
 import tensorflow as tf
 from pathlib import Path
-from src.training.model import build_cnn_model
+from src.training.model import build_cnn_model, build_cnn_model_v2
 from src.data.loader import load_galaxy10
 from src.data.preprocessing import normalize_images, resize_images
 from src.data.split import split_data
 from src.config import BATCH_SIZE, EPOCHS, MODEL_PATH
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
+
+
 Path("models").mkdir(parents=True, exist_ok=True)
+
+
 
 print("Loading data...")
 images, labels = load_galaxy10()
 
 images = resize_images(images)
-images = normalize_images(images)
+# images = normalize_images(images) # when using a pretrained model we do not need to normalize by hand
 
 X_train, X_test, y_train, y_test = split_data(
     images, labels
 )
 
-model = build_cnn_model()
+# model = build_cnn_model()
+
+model = build_cnn_model_v2()
 
 model.compile(
-    optimizer=tf.keras.optimizers.Adam(),
+    optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3), # Adam()
     loss="sparse_categorical_crossentropy",
     metrics=["accuracy"]
 )

@@ -3,7 +3,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 DATA_PATH = PROJECT_ROOT / "data" / "Galaxy10_DECals.h5"
-MODEL_PATH = "models/galaxy_cnn_v1_1.keras"
+MODEL_PATH = "models/galaxy_cnn_v2.keras"
 
 IMAGE_SIZE = (128, 128)
 NUM_CLASSES = 10
@@ -12,7 +12,7 @@ TEST_SIZE = 0.2 #20%
 
 BATCH_SIZE = 32
 
-EPOCHS = 10
+EPOCHS = 20
 
 GALAXY10_CLASSES = {
     0: "Disturbed Galaxies",
