@@ -8,7 +8,7 @@ from src.data.preprocessing import normalize_images, resize_images
 from src.data.split import split_data
 from src.config import BATCH_SIZE, EPOCHS, MODEL_PATH
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-
+import json
 
 
 Path("models").mkdir(parents=True, exist_ok=True)
@@ -59,5 +59,8 @@ history = model.fit(
     callbacks=[early_stopping, checkpoint]
 )
 
-# model.save(MODEL_PATH)
+with open("history_v2.json", "w") as f:
+    json.dump(history.history, f)
+
+# model.save(MODEL_PATH) # not necessary with early stopping + checkpoint
 print(f"Model saved to {MODEL_PATH}")
